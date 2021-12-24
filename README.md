@@ -1,6 +1,5 @@
 # Meditation App
-
-Cookbook is full MERN stack web application. Meditation app is a meditation timer and tracker carefully designed for seasoned or beginning-but-serious mindfulness meditators. Meditation application is a computer-based application that provides ambient sounds for meditation. The benefit of this app is primarily to ensure high-quality relaxation and achieve the external and internal harmony of the user.
+ Meditation app is a meditation timer and tracker carefully designed for seasoned or beginning-but-serious mindfulness meditators. Meditation application is a computer-based application that provides ambient sounds for meditation. The benefit of this app is primarily to ensure high-quality relaxation and achieve the external and internal harmony of the user.
 
 ## technologies
 In this MERN stack application the **frontend** is developed in HTML5, CSS3 and React.js while **backend** is created in Express and Node.js. 
