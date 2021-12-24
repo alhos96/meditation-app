@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "header": "Welcome to application",
+      "main": "We welcome you to our Mindful guide to meditation, which includes a variety of styles of meditation, information about the benefits of each practice, and free guided audio practices that help you learn how to  meditate and incorporate meditation into your daily life.",
+      "img": "http://localhost:5000/images/girl-meditating.svg"
+    },
+    {
+      "header": "What is Meditation?",
+      "main": "How do you learn to meditate? In mindfulness meditation, we’re learning how to pay attention to the breath as it goes in and out, and notice when the mind wanders from this task. This practice of returning to the breath builds the muscles of attention and mindfulness.",
+      "img": "http://localhost:5000/images/boy-meditating.svg"
+    },
+    {
+      "header": "Why Learn to Meditate?",
+      "main": "While meditation isn’t a cure-all, it can certainly provide some much-needed space in your life. Sometimes, that’s all we need to make better choices for ourselves, our families, and our communities. And the most important tools you can bring with you to your meditation practice are a little patience, some kindness for yourself, and a comfortable place to sit.",
+      "img": "http://localhost:5000/images/girl-two-meditating.svg"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+.AudioPlayer {
+  height: 250px;
+  width: 250px;
+  opacity: 0.9;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  border-radius: 50%;
+  position: relative;
+  margin: auto;
+}
+
+.player-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 100px !important;
+  cursor: pointer;
+}
+
+.favorite {
+  color: #ba2c42;
+  opacity: 0.9;
+}
+
+.song-title-in-player {
+  margin-top: 15px;
+  padding: 5px 2.5px;
+  border-radius: 5px;
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+}
