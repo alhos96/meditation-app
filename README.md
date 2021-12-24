@@ -6,12 +6,12 @@ In this MERN stack application the **frontend** is developed in HTML5, CSS3 and 
 **Data** is stored in MongoDB Atlas and users can access only their data but no others.
 
 ## product features
--User tutorial
--Authorization
--Facebook Login
--Track library screen
--Meditation screen
--User profile screen
+- User tutorial
+- Authorization
+- Facebook Login
+- Track library screen
+- Meditation screen
+- User profile screen
 
 ## application flow
 
