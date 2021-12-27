@@ -185,20 +185,7 @@ function MyProfile() {
               />
             </Fade>
             <br></br>
-            {willEdit && (
-              <Fade in={fade} timeout={{ enter: 500 }}>
-                <TextField
-                  onChange={(e) => changeHandler(e, userInput, setUserInput)}
-                  size="medium"
-                  margin="dense"
-                  required
-                  name="password"
-                  type="password"
-                  label="Password"
-                  fullWidth
-                />
-              </Fade>
-            )}
+
             <Fade in={fade} timeout={{ enter: 1500 }} mountOnEnter unmountOnExit>
               <Divider sx={{ mt: 2 }} />
             </Fade>

@@ -248,7 +248,7 @@ exports.facebookLogin = async (req, res, next) => {
 };
 
 exports.editProfile = async (req, res, next) => {
-  const { name, email, password, active } = req.body;
+  const { name, email, active } = req.body;
 
   const id = req.userData.userId;
 
@@ -314,30 +314,9 @@ exports.editProfile = async (req, res, next) => {
 
   //user editing his profile
 
-  let areMatchingPasswords;
-
-  try {
-    areMatchingPasswords = await bcrypt.compare(password, existingUser.password);
-  } catch (error) {
-    res.status(500).json({ message: "Couldn't connect to database" });
-
-    const err = new Error("Couldn't connect to database", 500);
-    return next(err);
-  }
-
-  if (!areMatchingPasswords) {
-    res.status(403).json({
-      message: "Wrong password!",
-    });
-
-    const err = new Error("Wrong password!", 403);
-    return next(err);
-  }
-
   let updatedUser = {
     name,
     email,
-    password: existingUser.password,
     active,
     _id: id,
   };
