@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Button, ButtonGroup, IconButton, Divider, Slide, Fade, Menu, MenuItem } from "@mui/material";
+import { Box, Typography, Button, Divider, Fade, Menu } from "@mui/material";
 import Loader from "./Loader";
-import Article from "./Article";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { getSomething, methods, windowSizeTracker } from "../helpers";
-import logo from "../assets/images/logo.svg";
 import Song from "./Song";
 
 function Songs() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   //global state
   const token = sessionStorage.getItem("token");
 
@@ -54,11 +47,6 @@ function Songs() {
     <>
       {songs.length > 0 ? (
         <>
-          <Fade in={fade} timeout={{ enter: 1500 }} mountOnEnter unmountOnExit>
-            <Divider className="sticky-divider" id="5-mins" width="20%" textAlign="left">
-              5 mins
-            </Divider>
-          </Fade>
           {categories && !showCategoriesAsMenu ? (
             <div className="action-buttons sticky-button">
               <Button
@@ -120,7 +108,11 @@ function Songs() {
               })}
             </Box>
           )}
-
+          <Fade in={fade} timeout={{ enter: 1500 }} mountOnEnter unmountOnExit>
+            <Divider id="5-mins" width="20%" textAlign="left">
+              5 mins
+            </Divider>
+          </Fade>
           <Box
             className="Songs"
             sx={{
@@ -133,6 +125,8 @@ function Songs() {
           >
             {songs &&
               songs
+
+                // eslint-disable-next-line
                 .filter((item) => {
                   if (filterCategory === "all") {
                     return item;
@@ -145,22 +139,11 @@ function Songs() {
                   }
                 })
                 .map((song, index) => {
-                  return (
-                    song.length === 5 && (
-                      <Song
-                        id={song._id}
-                        title={song.title}
-                        image={song.img}
-                        length={song.length}
-                        key={index}
-                        isRealLength={song.isRealLength}
-                      />
-                    )
-                  );
+                  return song.length === 5 && <Song id={song._id} title={song.title} image={song.img} key={index} />;
                 })}
           </Box>
           <Fade in={fade} timeout={{ enter: 1500 }} mountOnEnter unmountOnExit>
-            <Divider className="sticky-divider" id="5-mins" width="20%" textAlign="left">
+            <Divider id="5-mins" width="20%" textAlign="left">
               10 mins
             </Divider>
           </Fade>
@@ -188,22 +171,11 @@ function Songs() {
                   }
                 })
                 .map((song, index) => {
-                  return (
-                    song.length === 10 && (
-                      <Song
-                        id={song._id}
-                        title={song.title}
-                        image={song.img}
-                        length={song.length}
-                        key={index}
-                        isRealLength={song.isRealLength}
-                      />
-                    )
-                  );
+                  return song.length === 10 && <Song id={song._id} title={song.title} image={song.img} key={index} />;
                 })}
           </Box>
           <Fade in={fade} timeout={{ enter: 1500 }} mountOnEnter unmountOnExit>
-            <Divider className="sticky-divider" id="5-mins" width="20%" textAlign="left">
+            <Divider id="5-mins" width="20%" textAlign="left">
               15 mins
             </Divider>
           </Fade>
@@ -231,22 +203,11 @@ function Songs() {
                   }
                 })
                 .map((song, index) => {
-                  return (
-                    song.length === 15 && (
-                      <Song
-                        id={song._id}
-                        title={song.title}
-                        image={song.img}
-                        length={song.length}
-                        key={index}
-                        isRealLength={song.isRealLength}
-                      />
-                    )
-                  );
+                  return song.length === 15 && <Song id={song._id} title={song.title} image={song.img} key={index} />;
                 })}
           </Box>
           <Fade in={fade} timeout={{ enter: 1500 }} mountOnEnter unmountOnExit>
-            <Divider className="sticky-divider" id="5-mins" width="20%" textAlign="left">
+            <Divider id="5-mins" width="20%" textAlign="left">
               20 mins
             </Divider>
           </Fade>
@@ -274,18 +235,7 @@ function Songs() {
                   }
                 })
                 .map((song, index) => {
-                  return (
-                    song.length === 20 && (
-                      <Song
-                        id={song._id}
-                        title={song.title}
-                        image={song.img}
-                        length={song.length}
-                        key={index}
-                        isRealLength={song.isRealLength}
-                      />
-                    )
-                  );
+                  return song.length === 20 && <Song id={song._id} title={song.title} image={song.img} key={index} />;
                 })}
           </Box>
         </>
