@@ -56,4 +56,4 @@ That runs the server part of application in the development mode on http://local
 
 #### seeding database
 
-To seed database with users and recipes make sure you are located in `server` then type command `npm run seed`. This will first drop all collections in database and then seed it with data. This is to avoid any potential disfuncionalities of application during your testing. 
+To seed database with songs make sure you are located in `server` then type command `npm run seed`. This will first drop all collections in database and then seed it with data. This is to avoid any potential disfuncionalities of application during your testing. 
