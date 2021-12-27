@@ -3,7 +3,7 @@ import "../assets/styles/audio.css";
 import { Box, Typography, Divider, Fade } from "@mui/material";
 import { PlayArrow, Pause, Replay, Favorite, FavoriteBorder, LibraryMusic } from "@mui/icons-material";
 import Loader from "./Loader";
-import logo from "../assets/images/background-song.png";
+import ProgressBar from "./ProgressBar";
 import { useNavigate } from "react-router-dom";
 import { getSomething, methods, postSomething } from "../helpers";
 
@@ -20,6 +20,9 @@ function AudioPlayer() {
   const [favourites, setFavourites] = useState([]);
   const [audio, setAudio] = useState(document.querySelector("audio"));
   const [fade, setFade] = useState(false);
+  const [fadeProgressBar, setFadeProgressBar] = useState(false);
+  const [position, setPosition] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   //helpers
   const { get, post } = methods;
@@ -32,6 +35,8 @@ function AudioPlayer() {
       setPlaying(true);
       setPaused(false);
       setDone(false);
+      setFadeProgressBar(true);
+      setDuration(audio.duration);
     } else {
       audio.pause();
       setPlaying(false);
@@ -49,6 +54,7 @@ function AudioPlayer() {
   useEffect(() => {
     getSomething(get, url, setSong);
     getSomething(get, `/songs/get-favourites`, setFavourites, token);
+    // eslint-disable-next-line
   }, [url]);
 
   useEffect(() => {
@@ -57,6 +63,9 @@ function AudioPlayer() {
         setDone(true);
         setPlaying(false);
         setPaused(false);
+      };
+      audio.ontimeupdate = () => {
+        setPosition(audio.currentTime);
       };
     }
   }, [audio]);
@@ -67,7 +76,7 @@ function AudioPlayer() {
         <>
           {" "}
           <Fade in={fade} timeout={{ enter: 1000 }} mountOnEnter unmountOnExit>
-            <Divider className="sticky-divider" id="5-mins" width="20%" textAlign="left">
+            <Divider id="5-mins" width="20%" textAlign="left">
               {song.length} mins
             </Divider>
           </Fade>
@@ -99,7 +108,7 @@ function AudioPlayer() {
             </Box>
           </Fade>
           <Fade in={fade} timeout={{ enter: 1500 }}>
-            <Box className="AudioPlayer" sx={{ backgroundImage: `url(${logo})`, mt: 5, mb: 3 }}>
+            <Box className="AudioPlayer" sx={{ backgroundImage: `url(${song.img})`, mt: 5, mb: 3 }}>
               <audio src={song.song} id="player" preload="metadata" />
 
               {paused && (
@@ -120,8 +129,9 @@ function AudioPlayer() {
               )}
             </Box>
           </Fade>
+          <ProgressBar position={position} duration={duration} fadeProgressBar={fadeProgressBar} />
           <Fade in={fade} timeout={{ enter: 2000 }} mountOnEnter unmountOnExit>
-            <Typography className="white-text song-title-in-player" align="center">
+            <Typography sx={{ mt: 1 }} className="white-text song-title-in-player" align="center">
               {song.title} <br></br>
             </Typography>
           </Fade>

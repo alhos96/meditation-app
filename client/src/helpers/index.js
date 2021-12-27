@@ -51,6 +51,18 @@ export const windowSizeTracker = (setState) => {
   }
 };
 
+export const formatDuration = (duration) => {
+  const minute = Math.floor(duration / 60);
+  const second = duration.toString().substring(1, 3);
+  return `${minute}:${second}`;
+};
+
+export const formatPosition = (position) => {
+  const minute = Math.floor(position / 60);
+  const secondLeft = position - minute * 60;
+  return `${minute}:${secondLeft < 9 ? `0${Math.floor(secondLeft)}` : Math.floor(secondLeft)}`;
+};
+
 export const methods = {
   get: "GET",
   post: "POST",
