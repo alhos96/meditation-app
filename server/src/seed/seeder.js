@@ -22,7 +22,6 @@ function seed() {
       img: song.img,
       song: song.song,
       category: song.category,
-      isRealLength: song.isRealLength,
     });
 
     try {
