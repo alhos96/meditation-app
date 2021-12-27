@@ -76,15 +76,6 @@ function App() {
               </PrivateRoute>
             }
           />
-
-          {/* <Route
-              path="/change-password"
-              element={
-                <PrivateRoute>
-                  <ChangePassword />
-                </PrivateRoute>
-              }
-            /> */}
         </Routes>
       </BrowserRouter>
     </Container>
