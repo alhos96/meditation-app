@@ -22,6 +22,7 @@ const slice = createSlice({
       users.message = "";
       users.user.name = payload.data.name;
       users.user.email = payload.data.email;
+      users.user.isFacebookUser = payload.data.isFacebookUser;
       sessionStorage.setItem("token", payload.data.token);
       sessionStorage.setItem("user", payload.data.name);
     },

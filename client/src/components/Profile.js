@@ -5,15 +5,20 @@ import { LibraryMusic } from "@mui/icons-material";
 import { userLoggedOut } from "../store/usersSlice";
 
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
   //helpers
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  //global state
+  const userInfo = useSelector((state) => state.users.user);
+
+  //local state
   const [fade, setFade] = useState(false);
 
+  //side effects
   useEffect(() => {
     setFade(true);
   }, []);
@@ -55,6 +60,7 @@ function Profile() {
           sx={{ mb: 2 }}
           size="large"
           variant="contained"
+          disabled={userInfo.isFacebookUser}
           disableElevation
           fullWidth
         >

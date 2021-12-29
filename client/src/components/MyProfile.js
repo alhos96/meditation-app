@@ -28,6 +28,7 @@ function MyProfile() {
   });
   const [willEdit, setWillEdit] = useState(false);
   const [fade, setFade] = useState(false);
+  const [messageForFacebookUser, setMessageForFacebookUser] = useState("");
 
   //popper state
   const [anchorEl, setAnchorEl] = useState(null);
@@ -39,6 +40,7 @@ function MyProfile() {
     dispatch(getUserInfo("/users/my-profile", get, token));
     return () => {
       dispatch(messageReset());
+      setMessageForFacebookUser("");
     };
     // eslint-disable-next-line
   }, []);
@@ -51,6 +53,13 @@ function MyProfile() {
   useEffect(() => {
     setFade(true);
   }, []);
+
+  useEffect(() => {
+    messageForFacebookUser &&
+      setTimeout(() => {
+        setMessageForFacebookUser("");
+      }, 2500);
+  }, [messageForFacebookUser]);
 
   return (
     <Box className="ViewProfile" sx={{ maxWidth: "500px", margin: "auto", pt: 1 }}>
@@ -113,10 +122,17 @@ function MyProfile() {
         <Fade in={fade} timeout={{ enter: 4000 }}>
           <Box className="action-buttons" sx={{ mr: 2.5, mb: 2, p: 0.5 }}>
             <Typography>
-              <Edit className="edit-profile-button white-text" onClick={() => setWillEdit(true)} sx={{ fontSize: "32px" }} />
+              <Edit
+                className="edit-profile-button white-text"
+                onClick={() => {
+                  !userInfo.isFacebookUser && setWillEdit(true);
+                  userInfo.isFacebookUser && setMessageForFacebookUser("Facebook users can't edit profile");
+                }}
+                sx={{ fontSize: "32px" }}
+              />
             </Typography>
 
-            <Typography>
+            {/* <Typography>
               <Delete
                 sx={{ fontSize: "32px" }}
                 className="deactivate-profile-button white-text"
@@ -126,7 +142,7 @@ function MyProfile() {
                   setUserInput({ ...userInput, active: false });
                 }}
               />
-            </Typography>
+            </Typography> */}
             <Typography className=" white-text">
               <LibraryMusic
                 onClick={() => {
@@ -155,6 +171,9 @@ function MyProfile() {
             sx={{ width: "85%", margin: "auto" }}
             fullWidth
           >
+            <Fade in={!!messageForFacebookUser} timeout={{ enter: 500 }} mountOnEnter unmountOnExit>
+              <Typography color="orangered">{messageForFacebookUser}</Typography>
+            </Fade>
             <Fade in={fade} timeout={{ enter: 500 }} mountOnEnter unmountOnExit>
               <TextField
                 onChange={(e) => changeHandler(e, userInput, setUserInput)}
@@ -207,8 +226,9 @@ function MyProfile() {
             <Fade in={fade} timeout={{ enter: 2500 }} mountOnEnter unmountOnExit>
               <Typography
                 onClick={() => {
-                  navigate("/change-password");
+                  !userInfo.isFacebookUser && navigate("/change-password");
                   dispatch(messageReset());
+                  userInfo.isFacebookUser && setMessageForFacebookUser("Facebook users can't edit profile");
                 }}
                 align="center"
                 sx={{ mt: 1, color: "#181818" }}

@@ -179,7 +179,7 @@ exports.login = async (req, res, next) => {
     return next(err);
   }
 
-  res.status(201).json({ token: token, name: existingUser.name, email: existingUser.email });
+  res.status(201).json({ token: token, name: existingUser.name, email: existingUser.email, isFacebookUser: existingUser.isFacebookUser });
   console.log("User logged in");
 };
 
@@ -211,13 +211,22 @@ exports.facebookLogin = async (req, res, next) => {
       return next(err);
     }
 
-    res.status(201).json({ token: token, name: existingUser.name, email: existingUser.email, message: "logged in" });
+    res
+      .status(201)
+      .json({
+        token: token,
+        name: existingUser.name,
+        email: existingUser.email,
+        isFacebookUser: existingUser.isFacebookUser,
+        message: "logged in",
+      });
   }
 
   if (!existingUser) {
     const newUser = new User({
       name: name,
       email: email,
+      isFacebookUser: true,
       password: "facebook-login",
     });
 
@@ -243,7 +252,9 @@ exports.facebookLogin = async (req, res, next) => {
       return next(err);
     }
 
-    res.status(201).json({ token: token, name: newUser.name, email: newUser.email, message: "registered" });
+    res
+      .status(201)
+      .json({ token: token, name: newUser.name, email: newUser.email, isFacebookUser: newUser.isFacebookUser, message: "registered" });
   }
 };
 
