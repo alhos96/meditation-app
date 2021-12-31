@@ -7,9 +7,9 @@ In this MERN stack application the **frontend** is developed in HTML5, CSS3 and 
 
 ## description and features
 - The system allows all users to create their own events, request registration on the events, so that they can attend chosen events. Users are also able to receive notifications right after other app users sends a registration request, which they can accept or reject. Users can keep track on received registration requests with registration requests list. Event creators can also delete events they have posted.
+- Dashboard page with the listing of all events and an option to filter the events
 - Registration page
 - Login Page
-- Dashboard page with the listing of all events and an option to filter the events
 
 
 ## starting and using the application
